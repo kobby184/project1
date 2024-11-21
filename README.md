@@ -22,12 +22,12 @@ The dataset includes [The dataset contains 29361 records of U.S. veterans, with 
 The target variable is `homeless_status`, which categorizes veterans as homeless or non-homeless. Missing values in character strength scores were imputed using the mean of the respective group.].
 
 ## Project Workflow  
-1. Data Preprocessing
+### 1. Data Preprocessing
    * Data Loading and inspection
    * Handling missing values
    * Data cleaning and Formatting
    
-2. Exploratory Data Analysis (EDA)
+### 2. Exploratory Data Analysis (EDA)
    - Calculated descriptive statistics (mean, median, standard deviation)  and check the number of people in each category across homeless and non-homeless veterans
   ```python
    #heatmap for number of people in each category
@@ -40,10 +40,77 @@ axs.set_ylabel('Gender Category')
 plt.show()
 ```
 #### Distribution of veteran status
-![Distribution of Gratitude](/plots/poluationnumber.png)
+![Number of People in each category](/plots/poluationnumber.png)
    
    - Plotted correlation heat map and dendograms of character strenghts across homeless and non-homless veterans
+```python
+# Identifying the columns that contain 'Rank' and extract the first word from each such column
+rank_columns = [col for col in data.columns if 'Rank' in col]
+#strength_columns = [col.split()[0] for col in rank_columns]  # Split by space and take the first word
+strength_columns = [col.replace(" Rank", "") for col in rank_columns if " Rank" in col]
+
+# Ensuring we only include the strengths that have corresponding columns
+strength_columns = [col for col in strength_columns if col in data.columns]
+
+# List of character strength variables
+strengths = strength_columns
+# pairwise correlation matrix
+correlation_matrix = veterans_dat[strengths].corr()
+
+# Converting the correlation matrix into a DataFrame
+correlation_df = pd.DataFrame(correlation_matrix)
+#correlation_df
+# Create the heatmap with correlation
+sns.heatmap(data[strengths].corr(), cmap='Blues', vmin=0, vmax=1, fmt=".2f")
+# Show the plot
+plt.show()
+```
+#### correlation heatmap
+![Dendogram](/plots/corrheatmap.png)
+
+```python
+from scipy.cluster.hierarchy import dendrogram, linkage
+import numpy as np
+
+# Convert correlation matrix to distance matrix
+distance_matrix = np.sqrt(2 * (1 - correlation_df))
+
+# Perform hierarchical clustering
+linked = linkage(distance_matrix, 'single')
+
+# Plotting the dendrogram
+plt.figure(figsize=(14, 7))
+dendrogram(linked, labels=strengths, orientation='top', distance_sort='descending')
+plt.title("Dendrogram for Character Strengths")
+plt.xlabel("Character Strengths")
+plt.xticks(rotation=90)
+plt.ylabel("Distance")
+plt.grid()
+plt.show()
+```
+#### Dendograms of characrter strengths
+![Dendogram](/plots/dendogramcs.png)
+
    - Examined the distribution of  `age`, `gender`, `homeless_status`, `education status`,`employment status` and `household income` of veterans through a pie plot
+```python
+data_temp = data[data['Are you a veteran of the military?'] == 'YES']
+fig,axs = plt.subplots(2,3, figsize=(12,8))
+fig.suptitle('Demographics of Veterans', fontsize=18)
+axs[0,0].pie(data_temp['Are you currently experiencing homelessness?'].value_counts(), autopct='%1.1f%%', shadow=False
+             , startangle=90,pctdistance=0.75)
+axs[0,0].legend(data_temp['Are you currently experiencing homelessness?'].value_counts().index
+                , bbox_to_anchor=[0.9,0.62])
+axs[0,0].set_title('Are you currently \nexperiencing homelessness?')
+axs[0,0].set_ylabel('')
+#on 0,1 make a pie chart for the civilian vs veteran ammount in complete data
+axs[0,1].pie(data_temp['employment_status_binary'].value_counts(dropna=False)
+             , autopct='%1.2f%%', shadow=False, startangle=90,pctdistance=1.2)
+axs[0,1].legend(data_temp['employment_status_binary'].value_counts(dropna=False).index
+                , bbox_to_anchor=[0.9,0.62])
+axs[0,1].set_title('Employment Status')
+```
+#### Distribution veterans demographics
+![Dendogram](/plots/pieplots.png)
 
 
 3. Statistical Analysis
