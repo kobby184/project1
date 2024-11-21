@@ -19,9 +19,7 @@ The dataset includes [The dataset contains 29361 records of U.S. veterans, with 
 - `character_strengths`: Scores for 24 VIA character strengths, such as gratitude, hope, perseverance, brave etc.
 - `education status`: The highest level education of veterans
 - `employment status`: The current occupation of veterans
-The target variable is `homeless_status`, which categorizes veterans as homeless or non-homeless. Missing values in character strength scores were imputed using the mean of the respective group.
-
-].
+The target variable is `homeless_status`, which categorizes veterans as homeless or non-homeless. Missing values in character strength scores were imputed using the mean of the respective group.].
 
 ## Project Workflow  
 1. Data Preprocessing
@@ -31,7 +29,19 @@ The target variable is `homeless_status`, which categorizes veterans as homeless
    
 2. Exploratory Data Analysis (EDA)
    - Calculated descriptive statistics (mean, median, standard deviation)  and check the number of people in each category across homeless and non-homeless veterans
-   - 
+  ```python
+   #heatmap for number of people in each category
+fig,axs = plt.subplots(1,1, figsize=(12,5))
+fig.suptitle('Number of people in each category', fontsize=16)
+sns.heatmap(numbers_rows, annot=True, fmt=".0f", cmap='Blues', ax=axs,yticklabels=categories_var2)
+axs.set_xticklabels(['homeless', 'non_homeless_pop'])
+# axs.set_xlabel('Character Strengths')
+axs.set_ylabel('Gender Category')
+plt.show()
+```
+#### Distribution of veteran status
+![Distribution of Gratitude](project1/plot/poluation.png)
+   
    - Plotted correlation heat map and dendograms of character strenghts across homeless and non-homless veterans
    - Examined the distribution of  `age`, `gender`, `homeless_status`, `education status`,`employment status` and `household income` of veterans through a pie plot
 
