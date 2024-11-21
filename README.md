@@ -40,7 +40,7 @@ axs.set_ylabel('Gender Category')
 plt.show()
 ```
 #### Distribution of veteran status
-![Distribution of Gratitude](project1/plots/poluationnumber.png)
+![Distribution of Gratitude](/plots/poluationnumber.png)
    
    - Plotted correlation heat map and dendograms of character strenghts across homeless and non-homless veterans
    - Examined the distribution of  `age`, `gender`, `homeless_status`, `education status`,`employment status` and `household income` of veterans through a pie plot
