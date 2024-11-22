@@ -4,6 +4,7 @@
 - [Project Overview](#project-overview)
 - [Dataset Overview](#dataset-overview)
 - [Project Workflow](#project-overview)
+- [Requirements](#requirements)
   
 
 ## Project Overview  
@@ -200,8 +201,4 @@ The radar chart titled "Veterans Means of Character Strengths by Homelessness St
 
 
 
-## License  
-This project is licensed under the MIT License.
 
-## Acknowledgments  
-Thanks to the VIA Institute on Character for providing the dataset.
