@@ -33,7 +33,7 @@ This study's EDA aims to uncover patterns and insights within the character stre
 
 
  - Calculated descriptive statistics (mean, median, standard deviation)  and check the number of people in each category across homeless and non-homeless veterans
-  ```python
+```python
    #heatmap for number of people in each category
 fig,axs = plt.subplots(1,1, figsize=(12,5))
 fig.suptitle('Number of people in each category', fontsize=16)
@@ -48,6 +48,7 @@ plt.show()
    
 - Plotted correlation heat map and dendograms of character strenghts across homeless and non-homless veterans.We used a heatmap to visualize the correlation matrix of character strengths among veterans, revealing low correlation coefficients, suggesting the distinctness of these traits. Hierarchical clustering further delineated the relationships among various character strengths, indicating that while some traits may co-occur, they largely represent distinct constructs
   
+
 ```python
 # Identifying the columns that contain 'Rank' and extract the first word from each such column
 rank_columns = [col for col in data.columns if 'Rank' in col]
@@ -70,6 +71,7 @@ sns.heatmap(data[strengths].corr(), cmap='Blues', vmin=0, vmax=1, fmt=".2f")
 # Show the plot
 plt.show()
 ```
+
 #### correlation heatmap
 ![Dendogram](/plots/corrheatmap.png)
 Heatmap depicting the correlations between various character strengths, with darker shades indicating stronger associations. This analysis informs on the research on U.S. war veterans by highlighting patterns in character strengths that may relate to the risk of homelessness within this group.
@@ -94,11 +96,13 @@ plt.ylabel("Distance")
 plt.grid()
 plt.show()
 ```
+
 #### Dendograms of characrter strengths
 ![Dendogram](/plots/dendogramcs.png)
 The dendrogram groups character strengths based on their similarity, with closer clusters indicating more closely related traits. This clustering can provide insights into the interrelationships among character strengths of U.S. war veterans, which may influence their risk of homelessness.
 
 - Examined the distribution of  `age`, `gender`, `homeless_status`, `education status`,`employment status` and `household income` of veterans through a pie plot
+  
 ```python
 data_temp = data[data['Are you a veteran of the military?'] == 'YES']
 fig,axs = plt.subplots(2,3, figsize=(12,8))
@@ -116,6 +120,7 @@ axs[0,1].legend(data_temp['employment_status_binary'].value_counts(dropna=False)
                 , bbox_to_anchor=[0.9,0.62])
 axs[0,1].set_title('Employment Status')
 ```
+
 #### Distribution veterans demographics
 ![Dendogram](/plots/pieplots.png)
 
@@ -155,6 +160,7 @@ for i, cat in enumerate(categories_var1):
 # Convert the formatted array for display
 formatted_pvalues_array = np.array(formatted_pvalues)
 ```
+
 #### HEATMAPS OF ASSOCIATION BETWEEN HOMELESS AND NON-HOMELESS VETERANS ACROSS VARIOUS CATEGORIES WITH CHARACTER STRENGTH
 
 Each shaded cell in the chart indicates the level of statistical significance for a given character strength, with darker shades representing greater significance. By utilizing an alpha threshold of 0.05. The shaded cell with red asterisk indicates a p-values less than 0.05. It means there is enough evidence to suggest that the scores for the given character strength differ significantly between the two groups (homeless vs. non-homeless).
