@@ -197,8 +197,9 @@ The radar chart titled "Veterans Means of Character Strengths by Homelessness St
 2. Install dependencies:  
    `pip install -r requirements.txt`  
 3. Run the main script:  
-   `python main.py`  
+   `python main.py`
 
+😃
 
 
 
