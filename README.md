@@ -97,7 +97,7 @@ plt.show()
 ![Dendogram](/plots/dendogramcs.png)
 The dendrogram groups character strengths based on their similarity, with closer clusters indicating more closely related traits. This clustering can provide insights into the interrelationships among character strengths of U.S. war veterans, which may influence their risk of homelessness.
 
-   - Examined the distribution of  `age`, `gender`, `homeless_status`, `education status`,`employment status` and `household income` of veterans through a pie plot
+- Examined the distribution of  `age`, `gender`, `homeless_status`, `education status`,`employment status` and `household income` of veterans through a pie plot
 ```python
 data_temp = data[data['Are you a veteran of the military?'] == 'YES']
 fig,axs = plt.subplots(2,3, figsize=(12,8))
