@@ -28,7 +28,10 @@ The target variable is `homeless_status`, which categorizes veterans as homeless
    * Data cleaning and Formatting
    
 ### 2. Exploratory Data Analysis (EDA)
-   - Calculated descriptive statistics (mean, median, standard deviation)  and check the number of people in each category across homeless and non-homeless veterans
+This study's EDA aims to uncover patterns and insights within the character strengths of U.S. war veterans, and to evaluate these findings in the context of homelessness risk. Our analysis delves into 29361 survey sessions, examining a diverse range of variables, including employment, education, income, disability, and homelessness status.
+
+
+ - Calculated descriptive statistics (mean, median, standard deviation)  and check the number of people in each category across homeless and non-homeless veterans
   ```python
    #heatmap for number of people in each category
 fig,axs = plt.subplots(1,1, figsize=(12,5))
@@ -42,7 +45,7 @@ plt.show()
 #### Distribution of veteran status
 ![Number of People in each category](/plots/poluationnumber.png)
    
-   - Plotted correlation heat map and dendograms of character strenghts across homeless and non-homless veterans
+- Plotted correlation heat map and dendograms of character strenghts across homeless and non-homless veterans.We used a heatmap to visualize the correlation matrix of character strengths among veterans, revealing low correlation coefficients, suggesting the distinctness of these traits. Hierarchical clustering further delineated the relationships among various character strengths, indicating that while some traits may co-occur, they largely represent distinct constructs
 ```python
 # Identifying the columns that contain 'Rank' and extract the first word from each such column
 rank_columns = [col for col in data.columns if 'Rank' in col]
@@ -67,6 +70,7 @@ plt.show()
 ```
 #### correlation heatmap
 ![Dendogram](/plots/corrheatmap.png)
+Heatmap depicting the correlations between various character strengths, with darker shades indicating stronger associations. This analysis informs on the research on U.S. war veterans by highlighting patterns in character strengths that may relate to the risk of homelessness within this group.
 
 ```python
 from scipy.cluster.hierarchy import dendrogram, linkage
@@ -90,6 +94,7 @@ plt.show()
 ```
 #### Dendograms of characrter strengths
 ![Dendogram](/plots/dendogramcs.png)
+The dendrogram groups character strengths based on their similarity, with closer clusters indicating more closely related traits. This clustering can provide insights into the interrelationships among character strengths of U.S. war veterans, which may influence their risk of homelessness.
 
    - Examined the distribution of  `age`, `gender`, `homeless_status`, `education status`,`employment status` and `household income` of veterans through a pie plot
 ```python
@@ -113,7 +118,7 @@ axs[0,1].set_title('Employment Status')
 ![Dendogram](/plots/pieplots.png)
 
 
-3. Statistical Analysis
+### 3.  Statistical Analysis
 * In this phase, we performed statistical tests to identify significant differences in character strengths between homeless and non-homeless veterans across different categories (`age`,`disabilty`,`employemnt`,`education`). A t-test was used to compare the means of the two groups (homeless vs. non-homeless) for each character strength. Below is the code that calculates p-values for age category across each comparison:
   
 ```python
@@ -148,9 +153,38 @@ for i, cat in enumerate(categories_var1):
 # Convert the formatted array for display
 formatted_pvalues_array = np.array(formatted_pvalues)
 ```
+#### HEATMAPS OF ASSOCIATION BETWEEN HOMELESS AND NON-HOMELESS VETERANS ACROSS VARIOUS CATEGORIES WITH CHARACTER STRENGTH
+
+Each shaded cell in the chart indicates the level of statistical significance for a given character strength, with darker shades representing greater significance. By utilizing an alpha threshold of 0.05. The shaded cell with red asterisk indicates a p-values less than 0.05. It means there is enough evidence to suggest that the scores for the given character strength differ significantly between the two groups (homeless vs. non-homeless).
+
+![Association](/plots/agestatus.png)
+
+ Character strengths like bravery, Teamwork, Honesty all indicates a significant difference among young adults who are veterans (homeless vs. non-homeless). Among elderly veterans too appreciation of beauty and excellence differ significantly. This tells us to look for these character strength among young adults and the elderly, it might be a sign to tell us if a veterans can be homeless or not. For the ages we categorized young adults as adults from the age of 18 to 35, middle-aged from 35 to 55 and elderly 55+.   
+
+![Association](/plots/employstatus.png)
+
+Employment status and race have had interesting findings, although intuition tells us that we should consider obvious factors such as education level or simply age. When considering education, notable variations are visible, such as those with a bachelor's degree showing significant differences in "Appreciation of Beauty & Excellence," indicating that education level may influence the manifestation of certain character strengths in relation to homelessness. In each cell the darker the color the bigger the chances of character strength showing significant difference.
+
+![Association](/plots/disabilitystatus.png)
+
+Using the same test of association, we can see that strengths like bravery, teamwork, honesty, etc shows a significant difference among disable veterans. There are no sign of differences in character strengths among able veterans. This gives a glimpse of strenghts we should take into consideration when we are looking veterans with disability. They might be some of the causes of homelessness in veterans shows a sign of these strength. In each cell the darker the color the bigger the chances of character strength showing significant difference.
+
+![Association](/plots/educatiostatus.png)
+
+Whiles bravery showed a significant difference in our initial studies when we considered the age category and emplymet status. There is no sign of difference in education status. Character strengths like Forgiveness showed a difference between homeless and non-homeless veterans who are post-bachelor's. When we look at Hope and Humilty, they both showed significant difference among homeless and non-homeless veterans that has highest level of education being in Profesional school or a level less than High school. In each cell the darker the color the bigger the chances of character strength showing significant difference. The intersting thing is veterans with post bachelor's degree showed no bravery and love in their character strengths.
+
+![Association](/plots/spiderplot.png)
+
+The radar chart titled "Veterans Means of Character Strengths by Homelessness Status" and displays the mean scores of various character strengths for homeless (YES) and non-homeless (NO) veterans. The chart is marked with asterisks to denote significant differences in character strengths, such as "Honesty" and "Perseverance." The blue line represents non-homeless veterans, and the orange line represents homeless veterans. Character strengths like "Honesty," "Hope," and "Kindness" show higher mean values for non-homeless veterans compared to their homeless counterparts, suggesting these traits may be more pronounced in veterans who are not experiencing homelessness.
+
+### 4. Findings & Results  
+-  In the age category, most of the character strengths showed difference between homeless veterans and non-homeless veterans that are young adults
+-  In the disability category, most of the character strengths showed difference in homeless and non-homeless veterans that are disable
+-  In the employment status, most of the character strength showed difference in homeless and non-homeless veterans that are employed.
+-  In the employment status at least five of the character strength showed significant differences between homeless and non-homeless veterans that level of higher education being Professional school, Associate's and less than high school.
+-  With the help of the radar chart, the most prominent character strengths among non-homeless veterans are Honesty, Judgement, and Kindness, whereas homeless veterans exhibit higher means in Curiosity, Honesty, and Creativity.
+
    
-4. Visualization  
-5. Conclusion  
 
 ## Requirements  
 - Python 3.9+  
@@ -158,17 +192,13 @@ formatted_pvalues_array = np.array(formatted_pvalues)
 
 ## Setup and Installation  
 1. Clone the repository:  
-   `git clone https://github.com/your_username/character-strengths-analysis.git`  
+   `git clone https://github.com/kobbyg184/project1.git`  
 2. Install dependencies:  
    `pip install -r requirements.txt`  
 3. Run the main script:  
    `python main.py`  
 
-## Results  
-Homeless veterans exhibit significantly lower scores in strengths such as gratitude and hope, compared to non-homeless veterans.
 
-## Visualization  
-![Bar chart of character strengths](images/bar_chart.png)
 
 ## License  
 This project is licensed under the MIT License.
