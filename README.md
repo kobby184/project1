@@ -47,6 +47,7 @@ plt.show()
 ![Number of People in each category](/plots/poluationnumber.png)
    
 - Plotted correlation heat map and dendograms of character strenghts across homeless and non-homless veterans.We used a heatmap to visualize the correlation matrix of character strengths among veterans, revealing low correlation coefficients, suggesting the distinctness of these traits. Hierarchical clustering further delineated the relationships among various character strengths, indicating that while some traits may co-occur, they largely represent distinct constructs
+  
 ```python
 # Identifying the columns that contain 'Rank' and extract the first word from each such column
 rank_columns = [col for col in data.columns if 'Rank' in col]
