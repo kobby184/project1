@@ -13,14 +13,14 @@ This study explores the character strengths of U.S. war veterans and examines ho
 
 ## Dataset Overview  
 Source: VIA Institute on Character  
-The dataset includes [The dataset contains 29361 records of U.S. veterans, with the following key details:
+The dataset contains 29361 records of U.S. veterans, with the following key details:
 - `homeless_status`: Categorical variable indicating homelessness (Yes/No).
 - `age`: Age of the veteran.
 - `gender`: Male or female.
 - `character_strengths`: Scores for 24 VIA character strengths, such as gratitude, hope, perseverance, brave etc.
 - `education status`: The highest level education of veterans
 - `employment status`: The current occupation of veterans
-The target variable is `homeless_status`, which categorizes veterans as homeless or non-homeless. Missing values in character strength scores were imputed using the mean of the respective group.].
+The target variable is `homeless_status`, which categorizes veterans as homeless or non-homeless. Missing values in character strength scores were imputed using the mean of the respective group
 
 ## Project Workflow  
 ### 1. Data Preprocessing
